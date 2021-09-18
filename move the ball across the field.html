@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+    --x: 100px;
+    --y: 100px;
+    }
+    #field {
+      position: fixed;
+      left: var( --x);
+      top: var(--y) ;
+      width: 500px;
+      height: 200px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      overflow: hidden;
+    }
+
+    #ball{
+        position: fixed;
+        left: var( --x)+18;
+        top: var(--y)+18;
+        width: 50px;
+        height: 50px; 
+       transition-duration: 1s;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+ 
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+<script>
+    let field = document.getElementById("field");
+    let ball = document.getElementById("ball");
+    field.addEventListener ("click", fieldClick);
+    let ballSize = ball.getBoundingClientRect();
+    let fieldSize = field.getBoundingClientRect();
+    
+    function fieldClick (click) {
+      let newLeft = click.clientX-(ballSize.width/2);
+      let newTop = click.clientY-(ballSize.height/2);
+
+      if (newLeft < fieldSize.x + 10) {
+        newLeft = fieldSize.x +10;
+      }
+      if (newLeft > (fieldSize.right - ballSize.width-10)) {
+        newLeft = fieldSize.right - ballSize.width -10 ;
+      } 
+      ball.style.left = newLeft + "px"; 
+      
+      if (newTop < fieldSize.y + 10){
+        newTop = fieldSize.y + 10;
+      }
+      if (newTop > fieldSize.bottom - ballSize.height-10 ){
+        newTop = fieldSize.bottom - ballSize.height-10
+      }
+      ball.style.top = newTop + "px";
+    }   
+
+</script>
+
+</body>
+</html>
