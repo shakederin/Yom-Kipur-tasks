@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+     .closed{
+         display: none;
+     }
+     .head::before {
+      content: '▶ ';
+     }
+
+  </style>
+</head>
+<body>
+
+  <div id = "menu">
+      <span id = "arrowDown">▼</span>
+      <span id = "rightArrow" class ="closed">▶</span>
+      <span id = "head" > Sweeties (click me)!</span> 
+    <ul id ="list">
+        <li>Cake</li>
+        <li>Donut</li>
+        <li>Honey</li>
+    </ul>
+  </div>
+<script>
+document.getElementById("menu").addEventListener("click",openOrCloseOnclick);
+const arrowDown = document.getElementById("arrowDown");
+const list = document.getElementById("list");
+const head = document.getElementById("head");
+const rightArrow = document.getElementById("rightArrow");
+function openOrCloseOnclick (){
+    list.classList.toggle('closed');
+    arrowDown.classList.toggle('closed');
+    rightArrow.classList.toggle('closed');
+}
+</script>
+
+</body>
+</html>

@@ -4,17 +4,42 @@
 <head>
   <meta charset="utf-8">
 </head>
+<style>
+  .pane {
+  position: relative;
+  background: #edf5e1;
+  padding: 10px 20px 10px;
+  border-top: solid 2px #c4df9b;
+}
 
+.remove-button {
+  position: absolute;
+  font-size: 110%;
+  color: darkred;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+</style>
 <body>
 
   <input type="button" id="hider" value="Click to hide" />
  
   <script>
-    document.getElementById("hider").addEventListener("click", function (){hideOnClick()})
-    function hideOnClick (){
-        document.getElementById("hider").hidden = true ;
+    function createClosingButton (pane){
+        const closingButton = document.createElement("span");
+        closingButton.classList.add("remove-button");
+        closingButton.innerHTML= "[X]";
+        closingButton.onclick = function() {pane.hidden = true}; 
+        pane.prepend(closingButton);
     }
+      const allPane = document.getElementsByClassName("pane");
+      for (let pane of allPane){
+         createClosingButton(pane);
+      }
   </script>
-
 </body>
 </html>
